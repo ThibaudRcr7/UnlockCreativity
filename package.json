@@ -1,9 +1,9 @@
 {
-    "name": "wibicom-stater-pack",
+    "name": "stater-pack",
     "version": "1.0.0",
-    "author": "Arnaud Herr <arnaud@wibicom.be>",
+    "author": "",
     "description": "Kit to start HTML pages",
-    "homepage": "https://wibicom.be",
+    "homepage": "",
     "private": true,
     "license": "WTFPL",
     "scripts": {
