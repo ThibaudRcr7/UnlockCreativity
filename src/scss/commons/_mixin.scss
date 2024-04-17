@@ -1,0 +1,24 @@
+@mixin fluid-type($min-vw, $max-vw, $min-value, $max-value) {
+  $factor: calc(1 / ($max-vw - $min-vw) * ($max-value - $min-value));
+  $calc-value: unquote(
+    "#{ $min-value - ($min-vw * $factor) } + #{ 100vw * $factor }"
+  );
+
+  font-size: $min-value;
+
+  @media screen and (min-width: #{ $min-vw }) {
+    font-size: calc(#{$calc-value});
+  }
+
+  @media screen and (min-width: #{ $max-vw }) {
+    font-size: $max-value;
+  }
+}
+@mixin delay($rule, $number, $value) {
+  @for $i from 1 to ($number + 1) {
+    &:nth-child(#{$number}n + #{$i}) {
+      -webkit-#{$rule}-delay: (#{$i * $value});
+      #{$rule}-delay: (#{$i * $value});
+    }
+  }
+}

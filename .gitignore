@@ -1,0 +1,15 @@
+bower_components
+node_modules
+dist
+build
+.DS_Store
+.bowerrc
+.editorconfig
+.jscsrc
+.jshintrc
+.travis.yml
+CHANGELOG.md
+CONTRIBUTING.md
+LICENSE.md
+README.md
+ruleset.xml

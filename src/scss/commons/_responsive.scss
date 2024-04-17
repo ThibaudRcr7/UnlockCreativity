@@ -1,0 +1,21 @@
+$breakpoints: (
+  mobile: "(max-width:576px)",
+  tablet: "(max-width:768px)",
+  laptop: "(max-width:992px)",
+  desktop: "(max-width:1200px)",
+  layout-change: "(max-width: 991px), all and (max-height:635px)",
+) !default;
+
+@mixin mq($breakpoint-name) {
+  $breakpoint-name: unquote($breakpoint-name);
+
+  @if map-has-key($breakpoints, $breakpoint-name) {
+    $query: map-get($breakpoints, $breakpoint-name);
+
+    @media all and #{$query} {
+      @content;
+    }
+  } @else {
+    @warn "#{$mq-name} is not a value defined in the 'breakpoints' map.";
+  }
+}

@@ -1,0 +1,93 @@
+$multiplyer-list: (
+  "default": 1,
+  "medium": 2,
+  "large": 3,
+  "wide": 4,
+);
+
+$directions-list: "top" "right" "bottom" "left";
+
+.grecaptcha-badge {
+  display: none !important;
+}
+
+[data-fancy-content] {
+  display: none;
+}
+
+.w100 {
+  width: 100%;
+}
+html {
+  max-width: 100%;
+}
+body {
+  width: 100vw;
+  max-width: 100%;
+  scroll-behavior: auto;
+  scroll-behavior: smooth;
+  color: var(--color);
+
+}
+
+body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color);
+  border-radius: 40px;
+}
+body,
+html {
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  color: black;
+  background-color: var(--bg-color);
+  height: auto;
+
+  font-family: 'MangoGrotesqueBlack';
+  font-style: normal;
+  font-display: swap;
+  position: relative;
+  touch-action: auto;
+  height: auto;
+
+  &.open-menu {
+    overflow: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  a {
+    cursor: pointer;
+  }
+
+  img,
+  svg {
+    user-select: none;
+  }
+
+  img,
+  a {
+    outline: none !important;
+    user-select: none;
+    -webkit-user-drag: none;
+
+    svg {
+      pointer-events: none;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+
