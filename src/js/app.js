@@ -9,6 +9,26 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// HEADER NAV - SCROLL :
+
+document.addEventListener('DOMContentLoaded', () => {
+  let lastScrollTop = 0;
+  const navbar = document.querySelector('.header-nav'); // Assurez-vous que le sélecteur correspond à votre HTML
+
+  window.addEventListener('scroll', () => {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+          // Scrolling vers le bas
+          navbar.style.top = '-100%'; // Adaptez cette valeur selon la hauteur de votre barre de navigation
+      } else {
+          // Scrolling vers le haut
+          navbar.style.top = '0';
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Pour éviter les valeurs négatives
+  });
+});
+
 // CARDS : PARALLAX
 
 let timeln = gsap.timeline({
@@ -109,34 +129,7 @@ gsap.to(".section-projets--img", {
   opacity: 0 
 });
 
-// HEADER NAV - SCROLL :
-
-document.addEventListener('DOMContentLoaded', () => {
-  let lastScrollTop = 0;
-  const navbar = document.querySelector('.header-nav'); // Assurez-vous que le sélecteur correspond à votre HTML
-
-  window.addEventListener('scroll', () => {
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-      if (scrollTop > lastScrollTop) {
-          // Scrolling vers le bas
-          navbar.style.top = '-100%'; // Adaptez cette valeur selon la hauteur de votre barre de navigation
-      } else {
-          // Scrolling vers le haut
-          navbar.style.top = '0';
-      }
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Pour éviter les valeurs négatives
-  });
-});
-
-
-
-
-
-
 // THREE JS ANIM
-
-const canvasRect = document.getElementById("canvas-1, canvas-2");
 
 var renderer1, renderer2, scene, scene1, scene2, camera1, camera2;
 
@@ -191,7 +184,6 @@ scene1.add(group);
 var myObject = null;
 var mySecondObject = null;
 
-// Ajouter une lumière à la scène 2
 const light = new THREE.PointLight(0xffffff, 1);
 light.position.set(0, 0, 5);
 scene2.add(light);
@@ -261,7 +253,6 @@ gltfLoader.load(
   }
 );
 
-// RESIZE
 window.addEventListener("resize", onWindowResize);
 
 function onWindowResize() {
