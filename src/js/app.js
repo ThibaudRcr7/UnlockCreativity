@@ -5,9 +5,13 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import $ from 'jquery';
+
 
 
 gsap.registerPlugin(ScrollTrigger);
+
+'use strict';
 
 // HEADER NAV - SCROLL :
 
@@ -129,6 +133,103 @@ gsap.to(".section-projets--img", {
   opacity: 0 
 });
 
+// RANDOM MESSENGER 
+
+var Messenger = function(el){
+  var m = this;
+  
+  m.init = function(){
+    m.codeletters = "壁に耳あり障子に目あり";
+    m.message = 0;
+    m.current_length = 0;
+    m.fadeBuffer = false;
+    m.messages = [
+      'PASSION',
+      'CRÉATION',
+      'AMBITION'
+    ];
+    
+    setTimeout(m.animateIn, 500);
+  };
+  
+  m.generateRandomString = function(length){
+    var random_text = '';
+    var reduced_length = Math.floor(length / 2); // Ajoutez cette ligne pour réduire la taille par 2
+    while(random_text.length < reduced_length){ // Modifiez cette ligne pour utiliser reduced_length
+      random_text += m.codeletters.charAt(Math.floor(Math.random()*m.codeletters.length));
+    } 
+      
+    return random_text;
+  };
+  
+  
+  m.animateIn = function(){
+    if(m.current_length < m.messages[m.message].length){
+      m.current_length = m.current_length + 2;
+      if(m.current_length > m.messages[m.message].length) {
+        m.current_length = m.messages[m.message].length;
+      }
+      
+      var message = m.generateRandomString(m.current_length);
+      $(el).html(message);
+      
+      setTimeout(m.animateIn, 300);
+    } else { 
+      setTimeout(m.animateFadeBuffer, 300);
+    }
+  };
+  
+  m.animateFadeBuffer = function(){
+    if(m.fadeBuffer === false){
+      m.fadeBuffer = [];
+      for(var i = 0; i < m.messages[m.message].length; i++){
+        m.fadeBuffer.push({c: (Math.floor(Math.random()*20))+1, l: m.messages[m.message].charAt(i)}); // Réduisez le nombre de cycles aléatoires
+      }
+    }
+    
+    var do_cycles = false;
+    var message = ''; 
+  
+    for(var i = 0; i < m.fadeBuffer.length; i++){
+      var fader = m.fadeBuffer[i];
+      if(fader.c > 0){
+        do_cycles = true;
+        fader.c--;
+        message += m.codeletters.charAt(Math.floor(Math.random()*m.codeletters.length));
+      } else {
+        message += fader.l;
+      }
+    }
+  
+    $(el).html(message);
+    
+    if(do_cycles === true){
+      setTimeout(m.animateFadeBuffer, 80);
+    } else {
+      setTimeout(m.cycleText, 2000);
+    }
+  };
+  
+  
+  m.cycleText = function(){
+    m.message = m.message + 1;
+    if(m.message >= m.messages.length){
+      m.message = 0;
+    }
+    
+    m.current_length = 0;
+    m.fadeBuffer = false;
+    $(el).html('');
+    
+    setTimeout(m.animateIn, 200);
+  };
+  
+  m.init();
+}
+
+var messenger = new Messenger($('#messenger'));
+
+
 // THREE JS ANIM
 
 var renderer1, renderer2, scene, scene1, scene2, camera1, camera2;
@@ -183,10 +284,6 @@ scene1.add(group);
 
 var myObject = null;
 var mySecondObject = null;
-
-const light = new THREE.PointLight(0xffffff, 1);
-light.position.set(0, 0, 5);
-scene2.add(light);
 
 const material1 = new THREE.MeshStandardMaterial({
   color: 0xff0000,
@@ -301,21 +398,21 @@ console.log("test");
 const radius = 30;
 const duration = 20; 
 
-gsap.to({}, {
-  duration: duration,
-  repeat: -1,
-  onUpdate: function() {
+// gsap.to({}, {
+//   duration: duration,
+//   repeat: -1,
+//   onUpdate: function() {
 
-    const t = this.progress();
+//     const t = this.progress();
 
-    const radian = Math.PI * 2 * t;
+//     const radian = Math.PI * 2 * t;
 
 
-    const y = Math.cos(radian) * radius;
-    const z = Math.sin(radian) * radius;
+//     const y = Math.cos(radian) * radius;
+//     const z = Math.sin(radian) * radius;
 
-    camera2.position.set(y, camera2.position.x, z);
+//     camera2.position.set(y, camera2.position.x, z);
 
-    camera2.lookAt(0, 0, 0);
-  }
-});
+//     camera2.lookAt(0, 0, 0);
+//   }
+// });

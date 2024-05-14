@@ -21,7 +21,7 @@
         "choices.js": "^10.2.0",
         "critical-css-webpack-plugin": "^3.0.0",
         "fontfaceobserver": "^2.1.0",
-        "jquery": "^3.6.0",
+        "jquery": "^3.7.1",
         "lenis": "^1.0.44",
         "sass": "^1.69.5",
         "three": "^0.164.1",
