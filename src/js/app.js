@@ -17,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
   let lastScrollTop = 0;
-  const navbar = document.querySelector('.header-nav'); // Assurez-vous que le sélecteur correspond à votre HTML
+  const navbar = document.querySelector('.header'); // Assurez-vous que le sélecteur correspond à votre HTML
 
   window.addEventListener('scroll', () => {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
