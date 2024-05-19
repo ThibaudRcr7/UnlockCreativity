@@ -12,14 +12,6 @@ header {
   transition: top 0.5s ease;
   z-index: 1000;
 
-  &__logo {
-    font-family: var(--font-light);
-    font-weight: 300;
-    margin-top: 0.75rem;
-    margin-left: var(--margin);
-    color: var(--white);
-  }
-
   &__list {
     font-family: var(--font-light);
     font-weight: 300;
@@ -27,6 +19,10 @@ header {
     display: flex;
     margin-right: var(--margin);
     margin-top: 0.5rem;
+  }
+
+  &__item:first-of-type {
+    margin-left: 0;
   }
 
   &__item {
@@ -82,5 +78,10 @@ header {
       }
     }
   }
-}
 
+  .header__item.active .link__container__title1,
+  .header__item.active .link__container__title2 {
+    color: var(--light-red);
+    text-shadow: 0 0 16px rgba(255, 0, 0, 0.8);
+  }
+}

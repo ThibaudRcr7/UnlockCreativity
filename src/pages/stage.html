@@ -40,64 +40,76 @@
   <body>
     <header>
       <div class="header">
-        <a class="header__logo" href="./index.html">
-          <span>ROCOUR THIBAUD</span>
-        </a>
         <ol class="header__list">
-          <li class="header__item">
-            <a href="./projets.html" class="link">
-              <span class="link__mask">
-                <div class="link__container">
-                  <span class="link__container__title1 link__container__title">PROJETS</span>
-                  <span class="link__container__title2 link__container__title">PROJETS</span>
-                </div>
-              </span>
-            </a>
-          </li>
-          <li class="header__item">
-            <a href="./stage.html" class="link">
-              <span class="link__mask">
-                <div class="link__container">
-                  <span class="link__container__title1 link__container__title">STAGE</span>
-                  <span class="link__container__title2 link__container__title">STAGE</span>
-                </div>
-              </span>
-            </a>
-          </li>
-          <li class="header__item">
-            <a href="./contact.html" class="link">
-              <span class="link__mask">
-                <div class="link__container">
-                  <span class="link__container__title1 link__container__title">CONTACT</span>
-                  <span class="link__container__title2 link__container__title">CONTACT</span>
-                </div>
-              </span>
-            </a>
+          <li class="header__item" id="index-link">
+              <a href="./index.html" class=" header__logo link">
+                  <span class="link__mask">
+                      <div class="link__container">
+                          <span class="link__container__title1 link__container__title">ROCOUR THIBAUD</span>
+                          <span class="link__container__title2 link__container__title">ROCOUR THIBAUD</span>
+                      </div>
+                  </span>
+              </a>
           </li>
         </ol>
+          <ol class="header__list">
+              <li class="header__item" id="projets-link">
+                  <a href="./projets.html" class="link">
+                      <span class="link__mask">
+                          <div class="link__container">
+                              <span class="link__container__title1 link__container__title">PROJETS</span>
+                              <span class="link__container__title2 link__container__title">PROJETS</span>
+                          </div>
+                      </span>
+                  </a>
+              </li>
+              <li class="header__item" id="stage-link">
+                  <a href="./stage.html" class="link">
+                      <span class="link__mask">
+                          <div class="link__container">
+                              <span class="link__container__title1 link__container__title">STAGE</span>
+                              <span class="link__container__title2 link__container__title">STAGE</span>
+                          </div>
+                      </span>
+                  </a>
+              </li>
+              <li class="header__item" id="contact-link">
+                  <a href="./contact.html" class="link">
+                      <span class="link__mask">
+                          <div class="link__container">
+                              <span class="link__container__title1 link__container__title">CONTACT</span>
+                              <span class="link__container__title2 link__container__title">CONTACT</span>
+                          </div>
+                      </span>
+                  </a>
+              </li>
+          </ol>
       </div>
-    </header>
+  </header>
     <main>
       <section class="stage-home">
         <h2 class="title stage-home__title">STAGE</h2>
         <p class="text stage-home__text">SCROLL DOWN</p>
       </section>
       <section class="stage-about">
+        <div id="messenger"></div>
         <div class="container-about">
           <img
             class="container-about__img"
             src="../images/profile.jpg"
             alt=""
           />
+          <div class="container-about__blocs">
+          <p class="container-about__text">Hello !</p>
           <p class="container-about__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
-            veniam ab. Ratione alias suscipit quisquam aperiam ipsam soluta
-            aspernatur id, deleniti doloribus ea ullam velit!
+            Je m'appelle Thibaud, étudiant en web design avec une grande passion pour l'infographie.
+            Je suis toujours en quête d'innovation et souhaites enrichir mes créations pour qu'elles soient uniques et remarquables.
           </p>
+        </div>
         </div>
       </section>
       <section class="section-talents">
-        <div id="messenger"></div>
+        <h3 class="section-talents__title">démarquation</h3>
       </section>
       <section class="section-skills">
         <h3 class="section-skills__title">Mes skills</h3>
@@ -144,7 +156,6 @@
         </div>
       </section>
       <section class="section-contact">
-        <canvas class="canvas-1" id="canvas-1"></canvas>
         <canvas class="canvas-2" id="canvas-2"></canvas>
         <div class="container-contact">
           <p class="contact__text">
