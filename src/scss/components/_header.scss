@@ -11,6 +11,27 @@ header {
   height: var(--header-height);
   transition: top 0.5s ease;
   z-index: 1000;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+
+  &.active {
+    @include mq(mobile) {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
+      height: 100vh;
+      width: 100%;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      top: 0;
+      right: 0;
+      
+    }
+  }
+
+  &__list:first-of-type{
+
+
+    @include mq(mobile) {
+      margin-top: 2rem;
+    }
+  }
 
   &__list {
     font-family: var(--font-light);
@@ -19,10 +40,16 @@ header {
     display: flex;
     margin-right: var(--margin);
     margin-top: 0.5rem;
-  }
 
-  &__item:first-of-type {
-    margin-left: 0;
+    @include mq(mobile) {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      padding: 0;
+      margin-top: 6rem;
+      opacity: 0;
+    }
   }
 
   &__item {
@@ -30,17 +57,30 @@ header {
     margin-left: 78px;
     color: var(--white);
 
+    @include mq(mobile) {
+      margin-top: var(--margin);
+      margin-left: var(--margin);
+    }
+
     .link {
       height: 1rem;
       align-items: center;
       text-decoration: none;
       display: inline-flex;
 
+      @include mq(mobile) {
+        margin-top: 1rem;
+      }
+
       &__mask {
         position: relative;
         padding: 0;
         height: 1rem;
         overflow: hidden;
+
+        @include mq(mobile) {
+          height: 1.25rem;
+        }
 
         .link__container {
           transition: transform 0.5s ease;
@@ -50,6 +90,11 @@ header {
             font-size: 0.75rem;
             line-height: 1rem;
             transition: transform 0.5s ease;
+
+            @include mq(mobile) {
+              line-height: 1.12rem;
+              font-size: 1.25rem;
+            }
           }
 
           &__title1 {
@@ -69,10 +114,20 @@ header {
 
           &__title1 {
             transform: rotate(20deg);
+
+            @include mq(mobile) {
+              color: var(--light-red);
+              text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+            }
           }
 
           &__title2 {
             transform: rotate(0);
+
+            @include mq(mobile) {
+              color: var(--light-red);
+              text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+            }
           }
         }
       }
@@ -84,4 +139,54 @@ header {
     color: var(--light-red);
     text-shadow: 0 0 16px rgba(255, 0, 0, 0.8);
   }
+
+  &__burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 1rem;
+    z-index: 1001;
+
+    span {
+      width: 100%;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    @include mq(mobile) {
+      display: flex;
+    }
+  }
+
+  &.active .header__burger {
+    span:nth-child(1) {
+      transform: rotate(45deg);
+      position: relative;
+      top: 8px;
+    }
+
+    span:nth-child(2) {
+      opacity: 0;
+    }
+
+    span:nth-child(3) {
+      transform: rotate(-45deg);
+      position: relative;
+      top: -8px;
+    }
+  }
+
+  &.active .header__list {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
+

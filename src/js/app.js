@@ -115,7 +115,76 @@ timeln.to(".card--3", {
 timeln.to(".card--3", {});
 
 
-// Scrolltrigger : Img Talents
+// Scrolltrigger : Expliquation
+document.addEventListener("DOMContentLoaded", function() {
+  const containerexp = document.querySelector(".container-exp");
+  if (containerexp) {
+    let sections = gsap.utils.toArray(".section-expliquation");
+    gsap.to(sections, {
+      xPercent: -100 * (sections.length - 1), 
+      ease: "none", 
+      scrollTrigger: {
+        trigger: containerexp, 
+        pin: true, 
+        scrub: 1,
+        snap: 1 / (sections.length - 1), 
+        end: () => "+=" + containerexp.offsetWidth
+      }
+    });
+  }
+});
+
+// BURGER MENU : Header
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var burgerBtn = document.getElementById('burgerBtn');
+    var header = document.querySelector('.header');
+
+    burgerBtn.addEventListener('click', function() {
+      header.classList.toggle('active');
+    });
+  });
+
+
+// Progress bar : STAGE
+
+document.addEventListener('DOMContentLoaded', () => {
+  const progressBars = document.querySelectorAll('.progress-bar');
+
+  const animateProgressBars = () => {
+    progressBars.forEach(bar => {
+      const progress = bar.getAttribute('data-progress');
+      const fill = bar.querySelector('.progress-fill');
+      fill.style.height = `${progress}%`;
+    });
+  };
+
+  const isElementInViewport = (el) => {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  };
+
+  const checkProgressBars = () => {
+    progressBars.forEach(bar => {
+      if (isElementInViewport(bar)) {
+        const progress = bar.getAttribute('data-progress');
+        const fill = bar.querySelector('.progress-fill');
+        fill.style.height = `${progress}%`;
+      }
+    });
+  };
+
+  window.addEventListener('scroll', checkProgressBars);
+  window.addEventListener('resize', checkProgressBars);
+  
+  checkProgressBars(); // Initial check in case bars are already in view
+});
 
 
 // Scrolltrigger : section title
@@ -203,7 +272,7 @@ var Messenger = function (el) {
         m.fadeBuffer.push({
           c: Math.floor(Math.random() * 20) + 1,
           l: m.messages[m.message].charAt(i),
-        }); // Réduisez le nombre de cycles aléatoires
+        });
       }
     }
 
