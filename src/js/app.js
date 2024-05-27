@@ -187,6 +187,31 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// UNLOCK CREATIVITY : Animation
+
+document.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const unlockElements = document.querySelectorAll('.unlock');
+  const creativityElements = document.querySelectorAll('.creativity');
+
+  const scatterFactor = scrollY / 5; // Adjust the factor to control scatter amount
+
+  unlockElements.forEach((element, index) => {
+      const angle = Math.random() * 2 * Math.PI; // Random angle for scatter direction
+      const distance = scatterFactor * (index + 1); // Scatter distance increases with index
+      element.style.transform = `translate(${distance * Math.cos(angle)}px, ${distance * Math.sin(angle)}px)`;
+      element.style.opacity = Math.max(1 - scrollY / 300, 0);
+  });
+
+  creativityElements.forEach((element, index) => {
+      const angle = Math.random() * 2 * Math.PI; // Random angle for scatter direction
+      const distance = scatterFactor * (index + 1); // Scatter distance increases with index
+      element.style.transform = `translate(${distance * Math.cos(angle)}px, ${distance * Math.sin(angle)}px)`;
+      element.style.opacity = Math.max(1 - scrollY / 300, 0);
+  });
+});
+
+
 // Scrolltrigger : section title
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -210,15 +235,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Scrolltrigger : wings
 
-gsap.to(".section-projets--img", {
+gsap.set(".section-wings--img2", { scaleY: 1 });
+gsap.set(".section-wings--img2", { scaleX: -1 });
+
+gsap.to(".section-wings--img", {
   scrollTrigger: {
-    trigger: ".section-projets",
-    start: "top top",
-    end: "bottom top",
+    trigger: ".section-wings",
+    start: "top center",
+    end: "bottom+=700 top",
     scrub: true,
+    onEnter: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
+    onEnterBack: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
   },
-  y: "150%",
-  opacity: 0,
+  keyframes: {
+    "0%": { rotation: 0 },
+    "25%": { rotation: 10 },
+    "50%": { rotation: -10 },
+    "75%": { rotation: 10 },
+    "100%": { rotation: 0 },
+  },
+  ease: "power1.inOut"
+});
+
+gsap.to(".section-wings--img2", {
+  scrollTrigger: {
+    trigger: ".section-wings",
+    start: "top center",
+    end: "bottom+=700 top",
+    scrub: true,
+    onEnter: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }), 
+    onEnterBack: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }), 
+  },
+  keyframes: {
+    "0%": { rotation: 0 },
+    "25%": { rotation: -10 },
+    "50%": { rotation: 10 },
+    "75%": { rotation: -10 },
+    "100%": { rotation: 0 },
+  },
+  ease: "power1.inOut"
 });
 
 // RANDOM MESSENGER
