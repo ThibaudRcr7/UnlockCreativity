@@ -85,3 +85,32 @@
   text-align: center;
   padding: 20px;
 }
+
+.anim-title span:nth-child(1) {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+  animation: pathanim 5s linear infinite;
+}
+
+.anim-title span:nth-child(2) {
+  -webkit-clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+  clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
+  animation: pathanim 5s reverse infinite;
+}
+
+@keyframes pathanim {
+  
+  0% {
+    transform:translateX(100%);
+  }
+
+  30% {
+    transform:translateX(0);
+  }
+  70% {
+    transform:translateX(0);
+  }
+  100% {
+    transform:translateX(-100%);
+  }
+}

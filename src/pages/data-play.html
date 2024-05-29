@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.0/dist/lenis.min.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Unlock Creativity</title>
@@ -34,16 +35,9 @@
       property="og:image"
       content="https://www.webbasement.be/images/logo_webbasement_final.png"
     />
-
     <link rel="stylesheet" href="https://use.typekit.net/jyu7vei.css" />
   </head>
   <body>
-    <div class="video-background">
-      <video autoplay muted loop class="video-background__content">
-        <source src="../images/chaine-anim.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
     <header>
       <div class="header">
         <div class="header__burger" id="burgerBtn">
@@ -68,29 +62,15 @@
           </li>
         </ol>
         <ol class="header__list">
-          <li class="header__item" id="projets-link">
-            <a href="./projets.html" class="link">
-              <span class="link__mask">
-                <div class="link__container">
-                  <span class="link__container__title1 link__container__title"
-                    >PROJETS</span
-                  >
-                  <span class="link__container__title2 link__container__title"
-                    >PROJETS</span
-                  >
-                </div>
-              </span>
-            </a>
-          </li>
           <li class="header__item" id="stage-link">
             <a href="./stage.html" class="link">
               <span class="link__mask">
                 <div class="link__container">
                   <span class="link__container__title1 link__container__title"
-                    >STAGE</span
+                    >internship</span
                   >
                   <span class="link__container__title2 link__container__title"
-                    >STAGE</span
+                    >internship</span
                   >
                 </div>
               </span>
@@ -101,10 +81,10 @@
               <span class="link__mask">
                 <div class="link__container">
                   <span class="link__container__title1 link__container__title"
-                    >CONTACT</span
+                    >contact</span
                   >
                   <span class="link__container__title2 link__container__title"
-                    >CONTACT</span
+                    >contact</span
                   >
                 </div>
               </span>
@@ -114,9 +94,53 @@
       </div>
     </header>
     <main>
-        <section>
-
-        </section>
+      <section class="section-works">
+        <div class="section-works__title anim-title">
+          <span>DATA PLAY</span>
+          <span>DATA PLAY</span>
+        </div>
+        <!-- <h2 class="section-works__h2">DATA PLAY</h2> -->
+        <div class="section-works__scaleup">
+          <img
+            class="section-works__img"
+            src="../images/data-img.png"
+            alt=""
+          />
+        </div>
+      </section>
+      <section class="section-desc">
+        <div class="section-desc__container">
+          <p class="section-desc__bigtext">A damn trip</p>
+          <p class="section-desc__text">
+            A Damn Trip est un projet humoristique créé en groupe, dans lequel
+            nous avons représentés tous nos professeurs dans un style cartoon.
+            Le but était de maintenir les professeurs en vie le plus longtemps
+            possible tout en leur administrant des drogues. Il était également
+            possible d'observer les effets et les conséquences des doses
+            administrées sur les personnages.
+          </p>
+        </div>
+        <img class="section-desc__img" src="../images/data-img.png" alt="" />
+      </section>
+      <section class="section-contact">
+        <canvas class="canvas-2" id="canvas-2"></canvas>
+        <div class="container-contact">
+          <p class="contact__text">
+            If my world intrigues you or if a collaboration tempts you,
+            let's enter together into my creative universe
+          </p>
+          <a href="contact.html">
+            <button class="contact__button">
+              <span class="button__mask">
+                <div class="button-container">
+                  <span class="button-title1">CONTACT</span>
+                  <span class="button-title2">CONTACT</span>
+                </div>
+              </span>
+            </button>
+          </a>
+        </div>
+      </section>
     </main>
     <footer class="footer">
       <ol class="footer__list">

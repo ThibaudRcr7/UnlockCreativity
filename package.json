@@ -17,6 +17,7 @@
         "npm": ">=2.1.5"
     },
     "dependencies": {
+        "@studio-freight/lenis": "^1.0.42",
         "bootstrap": "^5.0.2",
         "choices.js": "^10.2.0",
         "critical-css-webpack-plugin": "^3.0.0",
@@ -29,12 +30,12 @@
         "validator.js": "^2.0.4"
     },
     "devDependencies": {
-        "@babel/core": "^7.23.6",
+        "@babel/core": "^7.24.6",
         "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-        "@babel/preset-env": "^7.0.0",
+        "@babel/preset-env": "^7.24.6",
         "@types/three": "^0.164.0",
         "autoprefixer": "^9.8.6",
-        "babel-loader": "^8.0.6",
+        "babel-loader": "^8.3.0",
         "clean-webpack-plugin": "^3.0.0",
         "copy-webpack-plugin": "^5.0.3",
         "css-loader": "^3.0.0",

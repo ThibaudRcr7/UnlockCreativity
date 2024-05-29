@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.0/dist/lenis.min.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Unlock Creativity</title>
@@ -34,16 +35,9 @@
       property="og:image"
       content="https://www.webbasement.be/images/logo_webbasement_final.png"
     />
-
     <link rel="stylesheet" href="https://use.typekit.net/jyu7vei.css" />
   </head>
   <body>
-    <div class="video-background">
-      <video autoplay muted loop class="video-background__content">
-        <source src="../images/chaine-anim.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
     <header>
       <div class="header">
         <div class="header__burger" id="burgerBtn">
@@ -68,29 +62,15 @@
           </li>
         </ol>
         <ol class="header__list">
-          <li class="header__item" id="projets-link">
-            <a href="./projets.html" class="link">
-              <span class="link__mask">
-                <div class="link__container">
-                  <span class="link__container__title1 link__container__title"
-                    >PROJETS</span
-                  >
-                  <span class="link__container__title2 link__container__title"
-                    >PROJETS</span
-                  >
-                </div>
-              </span>
-            </a>
-          </li>
           <li class="header__item" id="stage-link">
             <a href="./stage.html" class="link">
               <span class="link__mask">
                 <div class="link__container">
                   <span class="link__container__title1 link__container__title"
-                    >STAGE</span
+                    >internship</span
                   >
                   <span class="link__container__title2 link__container__title"
-                    >STAGE</span
+                    >internship</span
                   >
                 </div>
               </span>
@@ -101,10 +81,10 @@
               <span class="link__mask">
                 <div class="link__container">
                   <span class="link__container__title1 link__container__title"
-                    >CONTACT</span
+                    >contact</span
                   >
                   <span class="link__container__title2 link__container__title"
-                    >CONTACT</span
+                    >contact</span
                   >
                 </div>
               </span>
@@ -115,8 +95,11 @@
     </header>
     <main>
       <section class="stage-home">
-        <h2 class="title stage-home__title">STAGE</h2>
-        <p class="text stage-home__text">SCROLL DOWN</p>
+        <div class="stage-home__title anim-title">
+        <span>INTERNSHIP</span>
+        <span>INTERNSHIP</span>
+      </div>
+      <!-- <p class="stage-home__text">SCROLL DOWN</p> -->
       </section>
       <section class="stage-about">
         <div id="messenger"></div>
@@ -136,25 +119,22 @@
       </section>
       <div class="container-exp">
         <section class="section-expliquation exp-1">
-          <h3 class="section-expliquation__title">démarquation</h3>
           <div class="exp-1__container">
             <img
               class="section-expliquation__img"
-              src="../images/expliquation-exp1-cyborg.png"
+              src="../images/workspace-cyborg.png"
               alt=""
             />
             <div class="exp-1__container__text">
+              <h3 class="section-expliquation__title">demarcation</h3>
               <p class="section-expliquation__text">
-                Cette année, pour un cours de 3D, j'ai travaillé sur Blender.
-                Bien que je connaisse un peu l'outil, je n'étais pas très
-                familier avec. J'ai donc commencé un projet d'hard surface où il
-                fallait réaliser la tête d'un cyborg. Au fil de ce projet, j'ai
-                découvert que j'aimais vraiment créer des objets en 3D.
+                This year, for a 3D course, I worked on Blender.
+                Although I was somewhat familiar with the tool, I wasn't very proficient in it. 
+                So, I started a hard surface project where we had to create a cyborg head. 
+                Throughout this project, I discovered that I really enjoyed creating 3D objects.
               </p>
               <p class="section-expliquation__text">
-                J'ai commencé à suivre des artistes et à m'inspirer de leurs
-                travaux et c'est ainsi que l'idée d'utiliser la 3D pour mon
-                travail de fin d'année m'est venue.
+                I began following artists and getting inspired by their work, and that's how the idea of using 3D for my end-of-year project came to me.
               </p>
             </div>
           </div>
@@ -211,38 +191,33 @@
       <section class="section-skills">
         <h3 class="section-skills__title">Mes skills</h3>
         <div class="skills__container">
-          <div class="progress-container">
-            <div class="progress-bar" data-progress="85">
-              <div class="progress-fill"></div>
-              <div class="progress-title">HTML</div>
-              <div class="progress-percentage">85%</div>
+          <div class="skills">
+            <div class="skill-container">
+              <div class="skill-label">Advanced</div>
+              <div class="skill-bar" data-skill-value="85%"><span>HTML</span></div>
             </div>
-            <div class="progress-bar" data-progress="70">
-              <div class="progress-fill"></div>
-              <div class="progress-title">CSS/SCSS</div>
-              <div class="progress-percentage">70%</div>
+            <div class="skill-container">
+              <div class="skill-label">Advanced</div>
+              <div class="skill-bar" data-skill-value="70%"><span>CSS</span></div>
             </div>
-            <div class="progress-bar" data-progress="40">
-              <div class="progress-fill"></div>
-              <div class="progress-title">Js</div>
-              <div class="progress-percentage">40%</div>
+            <div class="skill-container">
+              <div class="skill-label">Novice</div>
+              <div class="skill-bar" data-skill-value="45%"><span>JS</span></div>
             </div>
-            <div class="progress-bar" data-progress="65">
-              <div class="progress-fill"></div>
-              <div class="progress-title">Figma</div>
-              <div class="progress-percentage">65%</div>
+            <div class="skill-container">
+              <div class="skill-label">Proficient</div>
+              <div class="skill-bar" data-skill-value="65%"><span>Figma</span></div>
             </div>
-            <div class="progress-bar" data-progress="35">
-              <div class="progress-fill"></div>
-              <div class="progress-title">Blender</div>
-              <div class="progress-percentage">35%</div>
+            <div class="skill-container">
+              <div class="skill-label">Novice</div>
+              <div class="skill-bar" data-skill-value="40%"><span>Blender</span></div>
             </div>
-            <div class="progress-bar" data-progress="70">
-              <div class="progress-fill"></div>
-              <div class="progress-title">Ai/Ps</div>
-              <div class="progress-percentage">70%</div>
+            <div class="skill-container">
+              <div class="skill-label">Advanced</div>
+              <div class="skill-bar" data-skill-value="70%"><span>Adobe</span></div>
             </div>
           </div>
+          
           <img class="skills__image" src="../images/img-locker.png" alt="" />
         </div>
       </section>
@@ -257,8 +232,8 @@
             <button class="contact__button">
               <span class="button__mask">
                 <div class="button-container">
-                  <span class="button-title1 title">CONTACT</span>
-                  <span class="button-title2 title">CONTACT</span>
+                  <span class="button-title1">CONTACT</span>
+                  <span class="button-title2">CONTACT</span>
                 </div>
               </span>
             </button>

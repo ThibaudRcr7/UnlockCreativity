@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.0/dist/lenis.min.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Unlock Creativity</title>
@@ -34,16 +35,9 @@
       property="og:image"
       content="https://www.webbasement.be/images/logo_webbasement_final.png"
     />
-
     <link rel="stylesheet" href="https://use.typekit.net/jyu7vei.css" />
   </head>
   <body>
-    <div class="video-background">
-      <video autoplay muted loop class="video-background__content">
-        <source src="../images/chaine-anim.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
     <header>
       <div class="header">
         <div class="header__burger" id="burgerBtn">
@@ -68,29 +62,15 @@
           </li>
         </ol>
         <ol class="header__list">
-          <li class="header__item" id="projets-link">
-            <a href="./projets.html" class="link">
-              <span class="link__mask">
-                <div class="link__container">
-                  <span class="link__container__title1 link__container__title"
-                    >PROJETS</span
-                  >
-                  <span class="link__container__title2 link__container__title"
-                    >PROJETS</span
-                  >
-                </div>
-              </span>
-            </a>
-          </li>
           <li class="header__item" id="stage-link">
             <a href="./stage.html" class="link">
               <span class="link__mask">
                 <div class="link__container">
                   <span class="link__container__title1 link__container__title"
-                    >STAGE</span
+                    >internship</span
                   >
                   <span class="link__container__title2 link__container__title"
-                    >STAGE</span
+                    >internship</span
                   >
                 </div>
               </span>
@@ -101,10 +81,10 @@
               <span class="link__mask">
                 <div class="link__container">
                   <span class="link__container__title1 link__container__title"
-                    >CONTACT</span
+                    >contact</span
                   >
                   <span class="link__container__title2 link__container__title"
-                    >CONTACT</span
+                    >contact</span
                   >
                 </div>
               </span>
@@ -114,9 +94,52 @@
       </div>
     </header>
     <main>
-        <section>
-
-        </section>
+      <section class="section-works">
+        <div class="section-works__title anim-title">
+          <span>RETHINKING UX</span>
+          <span>RETHINKING UX</span>
+        </div>
+        <!-- <h2 class="section-works__h2">Rethinking ux</h2> -->
+        <div class="section-works__scaleup">
+          <img
+            class="section-works__img"
+            src="../images/rux-img.png"
+            alt=""
+          />
+        </div>
+      </section>
+      <section class="section-desc">
+        <div class="section-desc__container">
+          <p class="section-desc__bigtext">RUX</p>
+          <p class="section-desc__text">
+            Le projet Rux consistait à réaménager la cour de notre
+            établissement. Nous avons d'abord travaillé sur les besoins des
+            élèves, en recueillant leurs idées et suggestions. Ensuite, nous
+            avons évalué ce qu'il était possible d'implémenter dans la limite du
+            raisonnable, en tenant compte des contraintes.
+          </p>
+        </div>
+        <img class="section-desc__img" src="../images/rux-img.png" alt="" />
+      </section>
+      <section class="section-contact">
+        <canvas class="canvas-2" id="canvas-2"></canvas>
+        <div class="container-contact">
+          <p class="contact__text">
+            Si mon univers vous intrigue ou si une collaboration vous tente,
+            rentrons ensemble dans mon univers créatif
+          </p>
+          <a href="contact.html">
+            <button class="contact__button">
+              <span class="button__mask">
+                <div class="button-container">
+                  <span class="button-title1 title">CONTACT</span>
+                  <span class="button-title2 title">CONTACT</span>
+                </div>
+              </span>
+            </button>
+          </a>
+        </div>
+      </section>
     </main>
     <footer class="footer">
       <ol class="footer__list">

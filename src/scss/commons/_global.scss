@@ -3,6 +3,7 @@
   font-size: 10rem;
   line-height: 0.8;
   position: relative;
+  text-transform: uppercase;
   .unlock, .creativity {
       display: inline-block;
       transition: transform 0.5s ease, opacity 0.5s ease;
@@ -206,8 +207,8 @@
 
     &__card {
       position: absolute;
-      width: 1300px;
-      height: 50vh;
+      width: 1000px;
+      height: 55vh;
       border-radius: 25px;
       border: 2px solid #a6a6a6;
       background-color: var(--bg-color);
@@ -231,7 +232,7 @@
     top: 64px;
   }
 
-  .container-cards__card img {
+  .card-img {
     width: 100%;
   }
 }
@@ -433,14 +434,32 @@
 
 .stage-home {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
 
-  &__title {
-    font-size: 10rem;
+  .stage-home__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:1200px;
+    height:600px;
+    text-align: center;
+    overflow: hidden;
     color: var(--white);
-    margin-top: 4rem;
   }
+  
+  .stage-home__title span {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 10rem;
+    text-transform: uppercase;
+  }
+
 
   &__text {
     font-family: var(--font-light);
@@ -526,8 +545,7 @@
   &__title {
     margin-top: 2rem;
     margin-bottom: var(--margin);
-    font-size: 2rem;
-    font-family: var(--font-light);
+    font-size: 4rem;
     color: var(--white);
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
     text-transform: uppercase;
@@ -536,14 +554,13 @@
   }
 
   &__text {
-    max-width: 800px;
+    max-width: 750px;
     font-family: var(--font-light);
     font-weight: 300;
     color: var(--white);
   }
 
   &__img {
-    margin-top: 1rem;
     border-radius: 25px;
     border: 2px solid #a6a6a6;
     width: 800px;
@@ -561,6 +578,7 @@
 
 .exp-1__container {
   display: flex;
+  align-items: center;
 
   &__text {
     margin-left: 6rem;
@@ -610,53 +628,55 @@
     width: 800px;
   }
 
-  .progress-container {
+  .skill-container {
     display: flex;
-    gap: var(--margin);
-    overflow: hidden;
+    align-items: flex-end;
+    height: 15rem;
+    margin-right: var(--margin);
   }
-
-  .progress-bar {
-    position: relative;
-    width: 100px;
-    height: 500px;
-    background: transparent;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 0;
-    background: var(--medium-red);
-    transition: height 1.5s ease;
-  }
-
-  .progress-title {
-    font-family: var(--font-light);
-    font-weight: 300;
+  
+  .skill-label {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    text-transform: uppercase;
     font-size: 0.5rem;
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    font-weight: 300;
+    margin-right: 0.2rem;
+    font-family: var(--font-light);
     color: var(--white);
   }
-
-  .progress-percentage {
-    font-family: var(--font-light);
-    font-weight: 300;
-    font-size: 0.75rem;
+  
+  .skill-bar {
+    width: 2.5rem;
+    background: var(--medium-red);
+    transition: height 2s ease;
+    height: 0%;
+    position: relative;
+  }
+  
+  .skill-bar span {
+    display: block;
+    writing-mode: vertical-lr;
+    transform: translateX(-50%) translateY(-50%) rotate(180deg);
     position: absolute;
-    bottom: 0.5rem;
-    width: 100%;
-    text-align: center;
+    left: 50%;
+    top: 50%;
     color: var(--white);
+    font-family: var(--font-light);
+    font-size: 0.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+  
+  /* This class is added via JavaScript when the element is in view */
+  .active {
+    height: var(--skill-level); /* Height is set via JavaScript */
+  }
+  
+  .skills {
+    display: flex;
   }
 }
-
 // --- CONTACT ---
 
 .section-form {
@@ -673,6 +693,11 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
+
+    span {
+      text-transform: uppercase;
+      font-size: 4rem;
+    }
 
     img {
       width: 15%;
@@ -723,5 +748,90 @@
     color: var(--white);
     font-family: var(--font-light);
     font-size: 0.5rem;
+  }
+}
+
+// PROJECTS PAGES
+
+.section-works {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 150vh;
+  position: relative;
+
+
+&__title {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:80%;
+  height:50%;
+  text-align: center;
+  overflow: hidden;
+  color: var(--white);
+}
+
+&__title span {
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 10rem;
+  text-transform: uppercase;
+}
+
+}
+.section-works__img {
+  border-radius: 25px;
+  border: 2px solid #a6a6a6;
+  width: 50vw;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.5s ease-in-out;
+}
+
+.section-works__scaleup {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-desc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .section-desc__container {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+  }
+
+  .section-desc__bigtext {
+    text-transform: uppercase;
+    font-size: 2rem;
+    margin: 0;
+  }
+  .section-desc__text {
+    color: var(--white);
+    font-family: var(--font-light);
+    font-weight: 300;
+    max-width: 650px;
+  }
+
+  .section-desc__img {
+    border-radius: 25px;
+    border: 2px solid #a6a6a6;
+    margin-left: 2rem;
+    height: 40%;
+    max-width: 30%;
   }
 }

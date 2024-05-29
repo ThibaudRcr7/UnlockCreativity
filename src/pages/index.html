@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.0/dist/lenis.min.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Unlock Creativity</title>
@@ -67,20 +68,6 @@
           </li>
         </ol>
         <ol class="header__list">
-          <li class="header__item" id="projets-link">
-            <a href="./projets.html" class="link">
-              <span class="link__mask">
-                <div class="link__container">
-                  <span class="link__container__title1 link__container__title"
-                    >projects</span
-                  >
-                  <span class="link__container__title2 link__container__title"
-                    >projects</span
-                  >
-                </div>
-              </span>
-            </a>
-          </li>
           <li class="header__item" id="stage-link">
             <a href="./stage.html" class="link">
               <span class="link__mask">
@@ -142,10 +129,10 @@
         <div class="container-cards">
           <div class="container-cards__card card--1">
             <a href="virtual.html">
-              <img src="../images/virtual-img.png" alt="" />
+                <img class="card-img" src="../images/virtual-img.png" alt="" />
             </a>
           </div>
-          <div class="container-cards__card card--2">
+          <div  class="container-cards__card card--2">
             <a href="data-play.html">
               <img src="../images/data-img.png" alt="" />
             </a>
@@ -163,7 +150,6 @@
           <div id="text-behind-blur">LETS CREATE<br />SOMETHING</div>
           <div id="text-front">LETS CREATE<br />SOMETHING</div>
         </div>
-
         <div class="canvas-container">
           <canvas id="canvas-1"></canvas>
         </div>
@@ -177,11 +163,10 @@
           </p>
           <a href="contact.html">
             <button class="contact__button">
-              <span class="link__mask">
-                <div class="link__container">
-                  <div>
-                  <span class="link__container__title1 link__container__title">CONTACT</span>
-                  <span class="link__container__title2 link__container__title">CONTACT</span>
+              <span class="button__mask">
+                <div class="button-container">
+                  <span class="button-title1">CONTACT</span>
+                  <span class="button-title2">CONTACT</span>
                 </div>
               </span>
             </button>

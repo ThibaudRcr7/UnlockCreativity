@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 ("use strict");
 
+
 // HEADER NAV - SCROLL :
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -149,42 +150,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Progress bar : STAGE
 
-document.addEventListener('DOMContentLoaded', () => {
-  const progressBars = document.querySelectorAll('.progress-bar');
-
-  const animateProgressBars = () => {
-    progressBars.forEach(bar => {
-      const progress = bar.getAttribute('data-progress');
-      const fill = bar.querySelector('.progress-fill');
-      fill.style.height = `${progress}%`;
-    });
-  };
-
-  const isElementInViewport = (el) => {
-    const rect = el.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-  };
-
-  const checkProgressBars = () => {
-    progressBars.forEach(bar => {
-      if (isElementInViewport(bar)) {
-        const progress = bar.getAttribute('data-progress');
-        const fill = bar.querySelector('.progress-fill');
-        fill.style.height = `${progress}%`;
+document.addEventListener("DOMContentLoaded", function() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const skillBar = entry.target;
+        skillBar.classList.add('active');
+        skillBar.style.setProperty('--skill-level', skillBar.getAttribute('data-skill-value'));
       }
     });
-  };
+  });
 
-  window.addEventListener('scroll', checkProgressBars);
-  window.addEventListener('resize', checkProgressBars);
-  
-  checkProgressBars(); // Initial check in case bars are already in view
+  document.querySelectorAll('.skill-bar').forEach(bar => {
+    observer.observe(bar);
+  });
 });
+
 
 
 // UNLOCK CREATIVITY : Animation
@@ -194,18 +175,18 @@ document.addEventListener('scroll', () => {
   const unlockElements = document.querySelectorAll('.unlock');
   const creativityElements = document.querySelectorAll('.creativity');
 
-  const scatterFactor = scrollY / 5; // Adjust the factor to control scatter amount
+  const scatterFactor = scrollY / 5; 
 
   unlockElements.forEach((element, index) => {
-      const angle = Math.random() * 2 * Math.PI; // Random angle for scatter direction
-      const distance = scatterFactor * (index + 1); // Scatter distance increases with index
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = scatterFactor * (index + 1); 
       element.style.transform = `translate(${distance * Math.cos(angle)}px, ${distance * Math.sin(angle)}px)`;
       element.style.opacity = Math.max(1 - scrollY / 300, 0);
   });
 
   creativityElements.forEach((element, index) => {
-      const angle = Math.random() * 2 * Math.PI; // Random angle for scatter direction
-      const distance = scatterFactor * (index + 1); // Scatter distance increases with index
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = scatterFactor * (index + 1);
       element.style.transform = `translate(${distance * Math.cos(angle)}px, ${distance * Math.sin(angle)}px)`;
       element.style.opacity = Math.max(1 - scrollY / 300, 0);
   });
@@ -232,6 +213,64 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   );
 });
+
+// Scaleup works
+
+document.addEventListener('DOMContentLoaded', function() {
+  const image = document.querySelector('.section-works__img');
+  const section = document.querySelector('.section-works');
+
+  if (!image || !section) {
+    console.error('Element not found: .section-works__img or .section-works');
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+      } else {
+        window.removeEventListener('scroll', handleScroll);
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  observer.observe(section);
+
+  function handleScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const viewportHeight = window.innerHeight;
+    const maxScroll = sectionTop + sectionHeight - viewportHeight;
+
+    if (scrollTop >= sectionTop && scrollTop <= maxScroll) {
+      const progress = (scrollTop - sectionTop) / (maxScroll - sectionTop);
+      const newWidth = 50 + 50 * progress; // Width changes from 50% to 100%
+      image.style.width = newWidth + 'vw';
+      image.style.position = 'fixed';
+      image.style.bottom = '0';
+      image.style.left = '50%';
+      image.style.transform = 'translateX(-50%)';
+    } else if (scrollTop > maxScroll) {
+      image.style.width = '100vw';
+      image.style.position = 'absolute';
+      image.style.bottom = '0';
+      image.style.left = '50%';
+      image.style.transform = 'translateX(-50%)';
+    } else {
+      image.style.width = '50vw';
+      image.style.position = 'fixed';
+      image.style.bottom = '0';
+      image.style.left = '50%';
+      image.style.transform = 'translateX(-50%)';
+    }
+  }
+});
+
 
 // Scrolltrigger : wings
 
@@ -286,7 +325,7 @@ var Messenger = function (el) {
     m.message = 0;
     m.current_length = 0;
     m.fadeBuffer = false;
-    m.messages = ["PASSION", "CRÉATION", "AMBITION"];
+    m.messages = ["PASSION", "CREATION", "AMBITION"];
 
     setTimeout(m.animateIn, 500);
   };
