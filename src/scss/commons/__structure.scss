@@ -19,6 +19,7 @@ $directions-list: "top" "right" "bottom" "left";
   width: 100%;
 }
 html {
+  overflow-x: hidden;
   max-width: 100%;
 }
 body {
@@ -28,6 +29,7 @@ body {
   scroll-behavior: smooth;
   color: var(--color);
   overflow-x: hidden;
+  overflow: hidden;
 }
 
 h1,
@@ -81,7 +83,7 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("../../images/fond-grain-5.jpeg");
+    background-image: url("../../images/fond-grain.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -133,6 +135,16 @@ section button {
   font-family: var(--font-large);
   font-size: 3rem;
   text-transform: uppercase;
+
+  @include mq(tablet) {
+    width: 340px;
+  }
+
+  @include mq(mobile) {
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+  }
 }
 
 section {

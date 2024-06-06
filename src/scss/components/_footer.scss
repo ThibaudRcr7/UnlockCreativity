@@ -1,9 +1,4 @@
 .footer {
-  &__logo {
-    width: 120px;
-    height: auto;
-    margin-bottom: 10px;
-  }
 
   &__list {
     display: flex;
@@ -14,12 +9,28 @@
     margin: 0;
     padding: 0;
     position: relative;
+
+    @include mq(tablet) {
+      height: 8rem;
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+
+    @include mq(mobile) {
+      height: 8rem;
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
   }
 
   &__item {
     color: var(--white);
     font-size: 0.75rem;
     margin: 0 1rem 0.5rem 1rem;
+
+    @include mq(mobile) {
+      margin-right: 1rem;
+    }
 
     &:hover {
       cursor: pointer;
@@ -32,6 +43,10 @@
     text-align: center;
     transition: 0.5s;
 
+    @include mq(mobile) {
+      font-size: 1rem;
+    }
+
     &--linkedin,
     &--instagram,
     &--pinterest,
@@ -39,6 +54,11 @@
       width: 1rem;
       height: 1rem;
       border-radius: 50%;
+
+      @include mq(mobile) {
+        width: 4rem;
+        height: 4rem;
+      }
 
       &:before {
         content: "";
@@ -110,9 +130,12 @@
     stroke-linejoin: round;
     stroke-miterlimit: 2;
 
+    @include mq(mobile) {
+      height: 2rem;
+    }
+
     &--dwt {
       enable-background: new 0 0 71.6 25;
-      // xml:space="preserve";
     }
   }
 }

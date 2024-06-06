@@ -34,6 +34,22 @@
   font-weight: 800;
   letter-spacing: 10px;
   line-height: 0.8;
+
+  @include mq(desktop) {
+    font-size: 6rem;
+  }
+
+  @include mq(laptop) {
+    font-size: 6rem;
+  }
+
+  @include mq(tablet) {
+    font-size: 5rem;
+  }
+
+  @include mq(mobile) {
+    font-size: 5rem;
+  }
 }
 
 #text-behind {
@@ -65,7 +81,8 @@
   width: 100%;
   height: 100%;
   z-index: -1;
-  overflow: hidden;
+  overflow: hidden; /* Ensure no overflow */
+  clip-path: inset(0 0 0 0); /* Clip the video to the viewport */
 }
 
 .video-background__content {
@@ -78,13 +95,6 @@
   transform: translate(-50%, -50%);
 }
 
-.content {
-  position: relative;
-  z-index: 1;
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
 
 .anim-title span:nth-child(1) {
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);

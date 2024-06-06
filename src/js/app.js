@@ -9,7 +9,25 @@ import $ from "jquery";
 
 gsap.registerPlugin(ScrollTrigger);
 
-("use strict");
+document.addEventListener('DOMContentLoaded', function() {
+  if (document.querySelector('.lightbox-gallery')) {
+    // Dynamically import Lightbox CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/node_modules/lightbox2/dist/css/lightbox.min.css';
+    document.head.appendChild(link);
+
+    // Dynamically import Lightbox JS
+    import('lightbox2').then((lightbox) => {
+      $(document).on('click', '[data-lightbox]', function(event) {
+        event.preventDefault();
+        lightbox.start($(this)[0]);
+      });
+    }).catch((error) => {
+      console.error('Error loading Lightbox:', error);
+    });
+  }
+});
 
 
 // HEADER NAV - SCROLL :
@@ -62,58 +80,45 @@ let timeln = gsap.timeline({
     start: "top-=180px top",
     end: "+=2000",
     scrub: 1,
+    markers: true,
   },
 });
 
-timeln.addLabel("card1");
-timeln.to(".card--1", {
-  yPercentPercen: 0,
-  opacity: 1,
-});
-
-timeln.from(".card--2", {
-  yPercent: 75,
-  opacity: 0,
-});
-timeln.addLabel("card2");
-
-timeln.to(
-  ".card--1",
-  {
+timeln.addLabel("card1")
+  .to(".card--1", {
+    yPercent: 0,
+    opacity: 1,
+    onStart: () => console.log("Animating card--1"),
+  })
+  .from(".card--2", {
+    yPercent: 75,
+    opacity: 0,
+  })
+  .addLabel("card2")
+  .to(".card--1", {
     scale: 0.95,
     yPercent: -0.5,
     opacity: 0.5,
-  },
-  "-=0.3"
-);
-
-timeln.to(".card--2", {
-  yPercent: 0,
-  opacity: 1,
-});
-
-timeln.from(".card--3", {
-  yPercent: 75,
-  opacity: 0,
-});
-timeln.addLabel("card3");
-
-timeln.to(
-  ".card--2",
-  {
+  }, "-=0.3")
+  .to(".card--2", {
+    yPercent: 0,
+    opacity: 1,
+  })
+  .from(".card--3", {
+    yPercent: 75,
+    opacity: 0,
+  })
+  .addLabel("card3")
+  .to(".card--2", {
     scale: 0.98,
     yPercent: -0.4,
     opacity: 0.6,
-  },
-  "-=0.3"
-);
+  }, "-=0.3")
+  .to(".card--3", {
+    yPercent: 0,
+    opacity: 1,
+  });
 
-timeln.to(".card--3", {
-  yPercent: 0,
-  opacity: 1,
-});
-
-timeln.to(".card--3", {});
 
 
 // Scrolltrigger : Expliquation
@@ -198,122 +203,150 @@ document.addEventListener('scroll', () => {
 document.addEventListener("DOMContentLoaded", function () {
   const section = document.querySelector(".section-title");
 
-  gsap.fromTo(
-    "#text-behind, #text-behind-blur, #text-front",
-    { scale: 1 },
-    {
-      scale: 1.5,
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    }
-  );
+  // Function to check if the device is mobile
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  // Apply animation only if not on mobile
+  if (!isMobile()) {
+    gsap.fromTo(
+      "#text-behind, #text-behind-blur, #text-front",
+      { scale: 1 },
+      {
+        scale: 1.5,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+          markers: true,
+        },
+      }
+    );
+  }
 });
+
+
 
 // Scaleup works
 
-document.addEventListener('DOMContentLoaded', function() {
-  const image = document.querySelector('.section-works__img');
-  const section = document.querySelector('.section-works');
+document.addEventListener('DOMContentLoaded', function () {
+  function initScaleupWorks() {
+    var section = document.querySelector('.section-works');
+    var image = document.querySelector('.section-works__img');
 
-  if (!image || !section) {
-    console.error('Element not found: .section-works__img or .section-works');
-    return;
-  }
+    if (!section || !image) {
+      console.log('Section-works or section-works__img not found on this page.');
+      return; // Exit the function if the elements are not found
+    }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
-      } else {
-        window.removeEventListener('scroll', handleScroll);
-      }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          window.addEventListener('scroll', handleScroll);
+          handleScroll();
+        } else {
+          window.removeEventListener('scroll', handleScroll);
+        }
+      });
+    }, {
+      threshold: 0.5
     });
-  }, {
-    threshold: 0.5
-  });
 
-  observer.observe(section);
+    try {
+      observer.observe(section);
+    } catch (error) {
+      console.error('Failed to observe the element:', error);
+    }
 
-  function handleScroll() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
-    const viewportHeight = window.innerHeight;
-    const maxScroll = sectionTop + sectionHeight - viewportHeight;
+    function handleScroll() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var sectionTop = section.offsetTop;
+      var sectionHeight = section.offsetHeight;
+      var viewportHeight = window.innerHeight;
+      var maxScroll = sectionTop + sectionHeight - viewportHeight;
 
-    if (scrollTop >= sectionTop && scrollTop <= maxScroll) {
-      const progress = (scrollTop - sectionTop) / (maxScroll - sectionTop);
-      const newWidth = 50 + 50 * progress; // Width changes from 50% to 100%
-      image.style.width = newWidth + 'vw';
-      image.style.position = 'fixed';
-      image.style.bottom = '0';
-      image.style.left = '50%';
-      image.style.transform = 'translateX(-50%)';
-    } else if (scrollTop > maxScroll) {
-      image.style.width = '100vw';
-      image.style.position = 'absolute';
-      image.style.bottom = '0';
-      image.style.left = '50%';
-      image.style.transform = 'translateX(-50%)';
-    } else {
-      image.style.width = '50vw';
-      image.style.position = 'fixed';
-      image.style.bottom = '0';
-      image.style.left = '50%';
-      image.style.transform = 'translateX(-50%)';
+      if (scrollTop >= sectionTop && scrollTop <= maxScroll) {
+        var progress = (scrollTop - sectionTop) / (maxScroll - sectionTop);
+        var newWidth = 50 + 50 * progress; // Width changes from 50% to 100%
+        image.style.width = newWidth + 'vw';
+        image.style.position = 'fixed';
+        image.style.bottom = '0';
+        image.style.left = '50%';
+        image.style.transform = 'translateX(-50%)';
+      } else if (scrollTop > maxScroll) {
+        image.style.width = '100vw';
+        image.style.position = 'absolute';
+        image.style.bottom = '0';
+        image.style.left = '50%';
+        image.style.transform = 'translateX(-50%)';
+      } else {
+        image.style.width = '50vw';
+        image.style.position = 'fixed';
+        image.style.bottom = '0';
+        image.style.left = '50%';
+        image.style.transform = 'translateX(-50%)';
+      }
     }
   }
-});
 
+  initScaleupWorks();
+});
 
 // Scrolltrigger : wings
 
-gsap.set(".section-wings--img2", { scaleY: 1 });
-gsap.set(".section-wings--img2", { scaleX: -1 });
+function createAnimations() {
 
-gsap.to(".section-wings--img", {
-  scrollTrigger: {
-    trigger: ".section-wings",
-    start: "top center",
-    end: "bottom+=700 top",
-    scrub: true,
-    onEnter: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
-    onEnterBack: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
-  },
-  keyframes: {
-    "0%": { rotation: 0 },
-    "25%": { rotation: 10 },
-    "50%": { rotation: -10 },
-    "75%": { rotation: 10 },
-    "100%": { rotation: 0 },
-  },
-  ease: "power1.inOut"
-});
+  const endPosition = window.matchMedia("(max-width: 168px)").matches ? "bottom+=300 top" : "bottom+=600 top";
 
-gsap.to(".section-wings--img2", {
-  scrollTrigger: {
-    trigger: ".section-wings",
-    start: "top center",
-    end: "bottom+=700 top",
-    scrub: true,
-    onEnter: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }), 
-    onEnterBack: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }), 
-  },
-  keyframes: {
-    "0%": { rotation: 0 },
-    "25%": { rotation: -10 },
-    "50%": { rotation: 10 },
-    "75%": { rotation: -10 },
-    "100%": { rotation: 0 },
-  },
-  ease: "power1.inOut"
-});
+  gsap.set(".section-wings--img2", { scaleY: 1 });
+  gsap.set(".section-wings--img2", { scaleX: -1 });
+
+  gsap.to(".section-wings--img", {
+    scrollTrigger: {
+      trigger: ".section-wings",
+      start: "top center",
+      end: endPosition,
+      scrub: true,
+      onEnter: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
+      onEnterBack: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
+    },
+    keyframes: {
+      "0%": { rotation: 0 },
+      "25%": { rotation: 10 },
+      "50%": { rotation: -10 },
+      "75%": { rotation: 10 },
+      "100%": { rotation: 0 },
+    },
+    ease: "power1.inOut"
+  });
+
+  gsap.to(".section-wings--img2", {
+    scrollTrigger: {
+      trigger: ".section-wings",
+      start: "top center",
+      end: endPosition,
+      scrub: true,
+      onEnter: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
+      onEnterBack: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
+    },
+    keyframes: {
+      "0%": { rotation: 0 },
+      "25%": { rotation: -10 },
+      "50%": { rotation: 10 },
+      "75%": { rotation: -10 },
+      "100%": { rotation: 0 },
+    },
+    ease: "power1.inOut"
+  });
+}
+
+createAnimations();
+
+window.addEventListener('resize', createAnimations);
+
 
 // RANDOM MESSENGER
 
@@ -534,7 +567,7 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.load(
   "../images/key.glb",
   function (gltf) {
-    console.log("Model loaded successfully");
+    console.log("Premier modèle chargé avec succès");
     const object = gltf.scene;
     object.traverse(function (child) {
       if (child.isMesh) {
@@ -546,30 +579,53 @@ gltfLoader.load(
     group.add(object);
     myObject = object;
 
-    gsap.fromTo(
-      myObject.scale,
-      { x: 0.25, y: 0.25, z: 0.25 },
-      {
-        x: 0.45,
-        y: 0.45,
-        z: 0.45,
-        scrollTrigger: {
-          trigger: ".section-title",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
+    // Animation de changement de taille
+    const resizeObject = (scale) => {
+      gsap.to(myObject.scale, {
+        x: scale,
+        y: scale,
+        z: scale,
+        duration: 0.5, // Durée de l'animation
+      });
+    };
+
+    // Animation de changement de position
+    const repositionObject = (positionY) => {
+      gsap.to(myObject.position, {
+        y: positionY,
+        duration: 0.5, // Durée de l'animation
+      });
+    };
+
+    const determineModelSize = () => {
+      const windowWidth = window.innerWidth;
+      if (windowWidth <= 430) {
+        resizeObject(0.1);
+        repositionObject(-0.4);
+      } else if (windowWidth <= 800) {
+        resizeObject(0.2);
+        repositionObject(-0.7);
+      } else if (windowWidth <= 1420) {
+        resizeObject(0.25);
+        repositionObject(-0.8);
+      } else {
+        resizeObject(0.45);
+        repositionObject(-1.4);
       }
-    );
+    };
+
+    determineModelSize();
+
+    window.addEventListener("resize", determineModelSize);
   },
   undefined,
   function (error) {
-    console.error("An error happened loading the model:", error);
+    console.error("Une erreur s'est produite lors du chargement du modèle :", error);
   }
 );
 
 gltfLoader.load(
-  "../images/logo.glb",
+  "../images/logo2.glb",
   function (gltf) {
     console.log("Deuxième modèle chargé avec succès");
     const secondObject = gltf.scene;
@@ -582,6 +638,34 @@ gltfLoader.load(
     secondObject.position.set(0, 0, 0);
     scene2.add(secondObject);
     mySecondObject = secondObject;
+
+    // Fonction pour ajuster la taille de l'objet en fonction de la largeur de l'écran
+    const adjustObjectSize = () => {
+      const windowWidth = window.innerWidth;
+      let newScale;
+
+      if (windowWidth <= 800) {
+        newScale = 0.5;
+      } else if (windowWidth <= 1200) {
+        newScale = 0.7;
+      } else {
+        newScale = 1;
+      }
+
+      mySecondObject.scale.setScalar(newScale);
+    };
+
+    // Appel initial pour ajuster la taille de l'objet au chargement de la page
+    adjustObjectSize();
+
+    // Écouteur d'événement pour ajuster la taille de l'objet lors du redimensionnement de la fenêtre
+    window.addEventListener("resize", () => {
+      // Appel de la fonction d'ajustement de la taille de l'objet lors du redimensionnement de la fenêtre
+      adjustObjectSize();
+      
+      // Appel de la fonction d'ajustement de la fenêtre de rendu pour la caméra 1
+      onWindowResize();
+    });
   },
   undefined,
   function (error) {
@@ -591,8 +675,6 @@ gltfLoader.load(
     );
   }
 );
-
-window.addEventListener("resize", onWindowResize);
 
 function onWindowResize() {
   camera1.aspect = window.innerWidth / window.innerHeight;
@@ -636,7 +718,6 @@ function animate2() {
 onWindowResize();
 animate1();
 animate2();
-console.log("test");
 
 const radius = 30;
 const duration = 20;
