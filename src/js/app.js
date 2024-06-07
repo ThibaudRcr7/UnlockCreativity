@@ -9,26 +9,27 @@ import $ from "jquery";
 
 gsap.registerPlugin(ScrollTrigger);
 
-document.addEventListener('DOMContentLoaded', function() {
-  if (document.querySelector('.lightbox-gallery')) {
+document.addEventListener("DOMContentLoaded", function () {
+  if (document.querySelector(".lightbox-gallery")) {
     // Dynamically import Lightbox CSS
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '/node_modules/lightbox2/dist/css/lightbox.min.css';
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "/node_modules/lightbox2/dist/css/lightbox.min.css";
     document.head.appendChild(link);
 
     // Dynamically import Lightbox JS
-    import('lightbox2').then((lightbox) => {
-      $(document).on('click', '[data-lightbox]', function(event) {
-        event.preventDefault();
-        lightbox.start($(this)[0]);
+    import("lightbox2")
+      .then((lightbox) => {
+        $(document).on("click", "[data-lightbox]", function (event) {
+          event.preventDefault();
+          lightbox.start($(this)[0]);
+        });
+      })
+      .catch((error) => {
+        console.error("Error loading Lightbox:", error);
       });
-    }).catch((error) => {
-      console.error('Error loading Lightbox:', error);
-    });
   }
 });
-
 
 // HEADER NAV - SCROLL :
 
@@ -52,21 +53,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ETAT ACTIF : HEADER
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname;
 
   const links = {
-      '/index.html': 'index-link',
-      '/projets.html': 'projets-link',
-      '/stage.html': 'stage-link',
-      '/contact.html': 'contact-link',
+    "/index.html": "index-link",
+    "/projets.html": "projets-link",
+    "/stage.html": "stage-link",
+    "/contact.html": "contact-link",
   };
 
   for (const path in links) {
-      if (currentPath.endsWith(path)) {
-          document.getElementById(links[path]).classList.add('active');
-          break;
-      }
+    if (currentPath.endsWith(path)) {
+      document.getElementById(links[path]).classList.add("active");
+      break;
+    }
   }
 });
 
@@ -84,7 +85,8 @@ let timeln = gsap.timeline({
   },
 });
 
-timeln.addLabel("card1")
+timeln
+  .addLabel("card1")
   .to(".card--1", {
     yPercent: 0,
     opacity: 1,
@@ -95,11 +97,15 @@ timeln.addLabel("card1")
     opacity: 0,
   })
   .addLabel("card2")
-  .to(".card--1", {
-    scale: 0.95,
-    yPercent: -0.5,
-    opacity: 0.5,
-  }, "-=0.3")
+  .to(
+    ".card--1",
+    {
+      scale: 0.95,
+      yPercent: -0.5,
+      opacity: 0.5,
+    },
+    "-=0.3"
+  )
   .to(".card--2", {
     yPercent: 0,
     opacity: 1,
@@ -109,94 +115,98 @@ timeln.addLabel("card1")
     opacity: 0,
   })
   .addLabel("card3")
-  .to(".card--2", {
-    scale: 0.98,
-    yPercent: -0.4,
-    opacity: 0.6,
-  }, "-=0.3")
+  .to(
+    ".card--2",
+    {
+      scale: 0.98,
+      yPercent: -0.4,
+      opacity: 0.6,
+    },
+    "-=0.3"
+  )
   .to(".card--3", {
     yPercent: 0,
     opacity: 1,
   });
 
-
-
 // Scrolltrigger : Expliquation
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const containerexp = document.querySelector(".container-exp");
   if (containerexp) {
     let sections = gsap.utils.toArray(".section-expliquation");
     gsap.to(sections, {
-      xPercent: -100 * (sections.length - 1), 
-      ease: "none", 
+      xPercent: -100 * (sections.length - 1),
+      ease: "none",
       scrollTrigger: {
-        trigger: containerexp, 
-        pin: true, 
+        trigger: containerexp,
+        pin: true,
         scrub: 1,
-        snap: 1 / (sections.length - 1), 
-        end: () => "+=" + containerexp.offsetWidth
-      }
+        snap: 1 / (sections.length - 1),
+        end: () => "+=" + containerexp.offsetWidth,
+      },
     });
   }
 });
 
 // BURGER MENU : Header
 
+document.addEventListener("DOMContentLoaded", function () {
+  var burgerBtn = document.getElementById("burgerBtn");
+  var header = document.querySelector(".header");
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var burgerBtn = document.getElementById('burgerBtn');
-    var header = document.querySelector('.header');
-
-    burgerBtn.addEventListener('click', function() {
-      header.classList.toggle('active');
-    });
+  burgerBtn.addEventListener("click", function () {
+    header.classList.toggle("active");
   });
-
+});
 
 // Progress bar : STAGE
 
-document.addEventListener("DOMContentLoaded", function() {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+document.addEventListener("DOMContentLoaded", function () {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const skillBar = entry.target;
-        skillBar.classList.add('active');
-        skillBar.style.setProperty('--skill-level', skillBar.getAttribute('data-skill-value'));
+        skillBar.classList.add("active");
+        skillBar.style.setProperty(
+          "--skill-level",
+          skillBar.getAttribute("data-skill-value")
+        );
       }
     });
   });
 
-  document.querySelectorAll('.skill-bar').forEach(bar => {
+  document.querySelectorAll(".skill-bar").forEach((bar) => {
     observer.observe(bar);
   });
 });
 
-
-
 // UNLOCK CREATIVITY : Animation
 
-document.addEventListener('scroll', () => {
+document.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
-  const unlockElements = document.querySelectorAll('.unlock');
-  const creativityElements = document.querySelectorAll('.creativity');
+  const unlockElements = document.querySelectorAll(".unlock");
+  const creativityElements = document.querySelectorAll(".creativity");
 
-  const scatterFactor = scrollY / 5; 
+  const scatterFactor = scrollY / 5;
 
   unlockElements.forEach((element, index) => {
-      const angle = Math.random() * 2 * Math.PI;
-      const distance = scatterFactor * (index + 1); 
-      element.style.transform = `translate(${distance * Math.cos(angle)}px, ${distance * Math.sin(angle)}px)`;
-      element.style.opacity = Math.max(1 - scrollY / 300, 0);
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = scatterFactor * (index + 1);
+    element.style.transform = `translate(${distance * Math.cos(angle)}px, ${
+      distance * Math.sin(angle)
+    }px)`;
+    element.style.opacity = Math.max(1 - scrollY / 300, 0);
   });
 
   creativityElements.forEach((element, index) => {
-      const angle = Math.random() * 2 * Math.PI;
-      const distance = scatterFactor * (index + 1);
-      element.style.transform = `translate(${distance * Math.cos(angle)}px, ${distance * Math.sin(angle)}px)`;
-      element.style.opacity = Math.max(1 - scrollY / 300, 0);
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = scatterFactor * (index + 1);
+    element.style.transform = `translate(${distance * Math.cos(angle)}px, ${
+      distance * Math.sin(angle)
+    }px)`;
+    element.style.opacity = Math.max(1 - scrollY / 300, 0);
   });
 });
-
 
 // Scrolltrigger : section title
 
@@ -228,37 +238,40 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
-
 // Scaleup works
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   function initScaleupWorks() {
-    var section = document.querySelector('.section-works');
-    var image = document.querySelector('.section-works__img');
+    var section = document.querySelector(".section-works");
+    var image = document.querySelector(".section-works__img");
 
     if (!section || !image) {
-      console.log('Section-works or section-works__img not found on this page.');
+      console.log(
+        "Section-works or section-works__img not found on this page."
+      );
       return; // Exit the function if the elements are not found
     }
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          window.addEventListener('scroll', handleScroll);
-          handleScroll();
-        } else {
-          window.removeEventListener('scroll', handleScroll);
-        }
-      });
-    }, {
-      threshold: 0.5
-    });
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            window.addEventListener("scroll", handleScroll);
+            handleScroll();
+          } else {
+            window.removeEventListener("scroll", handleScroll);
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
 
     try {
       observer.observe(section);
     } catch (error) {
-      console.error('Failed to observe the element:', error);
+      console.error("Failed to observe the element:", error);
     }
 
     function handleScroll() {
@@ -271,35 +284,53 @@ document.addEventListener('DOMContentLoaded', function () {
       if (scrollTop >= sectionTop && scrollTop <= maxScroll) {
         var progress = (scrollTop - sectionTop) / (maxScroll - sectionTop);
         var newWidth = 50 + 50 * progress; // Width changes from 50% to 100%
-        image.style.width = newWidth + 'vw';
-        image.style.position = 'fixed';
-        image.style.bottom = '0';
-        image.style.left = '50%';
-        image.style.transform = 'translateX(-50%)';
+        image.style.width = newWidth + "vw";
+        image.style.position = "fixed";
+        image.style.bottom = "0";
+        image.style.left = "50%";
+        image.style.transform = "translateX(-50%)";
       } else if (scrollTop > maxScroll) {
-        image.style.width = '100vw';
-        image.style.position = 'absolute';
-        image.style.bottom = '0';
-        image.style.left = '50%';
-        image.style.transform = 'translateX(-50%)';
+        image.style.width = "100vw";
+        image.style.position = "absolute";
+        image.style.bottom = "0";
+        image.style.left = "50%";
+        image.style.transform = "translateX(-50%)";
       } else {
-        image.style.width = '50vw';
-        image.style.position = 'fixed';
-        image.style.bottom = '0';
-        image.style.left = '50%';
-        image.style.transform = 'translateX(-50%)';
+        image.style.width = "50vw";
+        image.style.position = "fixed";
+        image.style.bottom = "0";
+        image.style.left = "50%";
+        image.style.transform = "translateX(-50%)";
       }
     }
   }
 
   initScaleupWorks();
+
+  ScrollTrigger.create({
+    trigger: ".section-works__scaleup",
+    start: "top 50%",
+    end: "bottom 50%",
+    onEnter: function () {
+      const targetElement = document.querySelector(".section-works__scaleup");
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    },
+    onLeaveBack: function () {
+      document
+        .querySelector(".section-works__scaleup")
+        .scrollIntoView({ behavior: "smooth" });
+    },
+  });
 });
 
 // Scrolltrigger : wings
 
 function createAnimations() {
-
-  const endPosition = window.matchMedia("(max-width: 168px)").matches ? "bottom+=300 top" : "bottom+=600 top";
+  const endPosition = window.matchMedia("(max-width: 168px)").matches
+    ? "bottom+=300 top"
+    : "bottom+=600 top";
 
   gsap.set(".section-wings--img2", { scaleY: 1 });
   gsap.set(".section-wings--img2", { scaleX: -1 });
@@ -310,8 +341,10 @@ function createAnimations() {
       start: "top center",
       end: endPosition,
       scrub: true,
-      onEnter: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
-      onEnterBack: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
+      onEnter: () =>
+        gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
+      onEnterBack: () =>
+        gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
     },
     keyframes: {
       "0%": { rotation: 0 },
@@ -320,7 +353,7 @@ function createAnimations() {
       "75%": { rotation: 10 },
       "100%": { rotation: 0 },
     },
-    ease: "power1.inOut"
+    ease: "power1.inOut",
   });
 
   gsap.to(".section-wings--img2", {
@@ -329,8 +362,10 @@ function createAnimations() {
       start: "top center",
       end: endPosition,
       scrub: true,
-      onEnter: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
-      onEnterBack: () => gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
+      onEnter: () =>
+        gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
+      onEnterBack: () =>
+        gsap.to(".video-background__content", { opacity: 0, duration: 1 }),
     },
     keyframes: {
       "0%": { rotation: 0 },
@@ -339,14 +374,13 @@ function createAnimations() {
       "75%": { rotation: -10 },
       "100%": { rotation: 0 },
     },
-    ease: "power1.inOut"
+    ease: "power1.inOut",
   });
 }
 
 createAnimations();
 
-window.addEventListener('resize', createAnimations);
-
+window.addEventListener("resize", createAnimations);
 
 // RANDOM MESSENGER
 
@@ -367,7 +401,6 @@ var Messenger = function (el) {
     var random_text = "";
     var reduced_length = Math.floor(length);
     while (random_text.length < reduced_length) {
-
       random_text += m.codeletters.charAt(
         Math.floor(Math.random() * m.codeletters.length)
       );
@@ -450,8 +483,8 @@ var messenger = new Messenger($("#messenger"));
 
 const about = document.querySelector(".container-about");
 if (about) {
-const defaultPosition =
-  "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+  const defaultPosition =
+    "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
 
   const updateTilt = (x, y) => {
     const containerRect = about.getBoundingClientRect();
@@ -460,34 +493,37 @@ const defaultPosition =
     const centerX = containerRect.width / 2;
     const centerY = containerRect.height / 2;
     const maxTilt = 15; // Adjust the maximum tilt angle as needed
-  
+
     let tiltX = ((mouseX - centerX) / centerX) * maxTilt;
     let tiltY = ((centerY - mouseY) / centerY) * maxTilt;
-  
+
     tiltX = Math.min(Math.max(tiltX, -maxTilt), maxTilt);
     tiltY = Math.min(Math.max(tiltY, -maxTilt), maxTilt);
-  
+
     about.style.transform = `perspective(1000px) rotateX(${tiltY}deg) rotateY(${tiltX}deg) scale3d(1, 1, 1)`;
   };
-  
 
   let isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
   if (isTouchDevice) {
-
-
     about.addEventListener("touchmove", (e) => {
       const touch = e.touches[0];
       updateTilt(touch.clientX, touch.clientY);
     });
-    about.addEventListener("touchend", () => (about.style.transform = defaultPosition));
+    about.addEventListener(
+      "touchend",
+      () => (about.style.transform = defaultPosition)
+    );
   } else {
-    about.addEventListener("mousemove", (e) => updateTilt(e.clientX, e.clientY));
-    about.addEventListener("mouseleave", () => (about.style.transform = defaultPosition));
+    about.addEventListener("mousemove", (e) =>
+      updateTilt(e.clientX, e.clientY)
+    );
+    about.addEventListener(
+      "mouseleave",
+      () => (about.style.transform = defaultPosition)
+    );
   }
 }
-
-
 
 // THREE JS ANIM
 
@@ -620,7 +656,10 @@ gltfLoader.load(
   },
   undefined,
   function (error) {
-    console.error("Une erreur s'est produite lors du chargement du modèle :", error);
+    console.error(
+      "Une erreur s'est produite lors du chargement du modèle :",
+      error
+    );
   }
 );
 
@@ -662,7 +701,7 @@ gltfLoader.load(
     window.addEventListener("resize", () => {
       // Appel de la fonction d'ajustement de la taille de l'objet lors du redimensionnement de la fenêtre
       adjustObjectSize();
-      
+
       // Appel de la fonction d'ajustement de la fenêtre de rendu pour la caméra 1
       onWindowResize();
     });
@@ -722,15 +761,18 @@ animate2();
 const radius = 30;
 const duration = 20;
 
- gsap.to({}, {
-   duration: duration,
-   repeat: -1,
-   onUpdate: function() {
-     const t = this.progress();
-     const radian = Math.PI * 2 * t;
-     const y = Math.cos(radian) * radius;
-     const z = Math.sin(radian) * radius;
-     camera2.position.set(y, camera2.position.x, z);
-     camera2.lookAt(0, 0, 0);
-   }
- });
+gsap.to(
+  {},
+  {
+    duration: duration,
+    repeat: -1,
+    onUpdate: function () {
+      const t = this.progress();
+      const radian = Math.PI * 2 * t;
+      const y = Math.cos(radian) * radius;
+      const z = Math.sin(radian) * radius;
+      camera2.position.set(y, camera2.position.x, z);
+      camera2.lookAt(0, 0, 0);
+    },
+  }
+);

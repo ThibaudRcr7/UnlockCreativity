@@ -67,7 +67,7 @@
   justify-content: center;
   align-items: center;
 
-  &__title--h2 {
+  &__subtitle {
     font-family: var(--font-light);
     font-weight: 300;
     font-size: 1rem;
@@ -100,7 +100,7 @@
 
     @include mq(tablet) {
       width: 90vw;
-      height: 350px
+      height: 350px;
     }
 
     @include mq(desktop) {
@@ -285,15 +285,15 @@
   margin-bottom: var(--margin);
   overflow: hidden;
 
-  @include mq(desktop){
+  @include mq(desktop) {
     width: 80%;
   }
 
-  @include mq(laptop){
+  @include mq(laptop) {
     width: 80%;
   }
 
-  @include mq(tablet){
+  @include mq(tablet) {
     width: 80%;
   }
 }
@@ -330,11 +330,11 @@
 
 @media only screen and (max-width: 450px) {
   .container-cards__card.card--1 .card-img {
-    content: url('../images/virtual-mobile.png');
+    content: url("../images/virtual-mobile.png");
   }
 
   .container-cards__card.card--3 .card-img {
-    content: url('../images/rux-mobile.png');
+    content: url("../images/rux-mobile.png");
   }
 }
 
@@ -450,8 +450,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1200px;
-    height: 600px;
+    width: 100%;
+    height: 500px;
     text-align: center;
     overflow: hidden;
     color: var(--white);
@@ -573,7 +573,6 @@
       font-weight: 300;
       font-size: 1rem;
 
-
       @include mq(tablet) {
         margin-top: 0rem;
         font-size: 1rem;
@@ -627,6 +626,7 @@
     font-family: var(--font-light);
     font-weight: 300;
     color: var(--white);
+    max-width: 90%;
 
     @include mq(desktop) {
       max-width: 90%;
@@ -673,7 +673,7 @@
   display: flex;
   align-items: center;
 
-  @include mq(tablet) {
+  @include mq(desktop) {
     flex-direction: column;
     align-items: flex-start;
     height: 100vh;
@@ -681,15 +681,11 @@
   }
 
   &__text {
-    margin-left: 6rem;
+    margin-left: 4rem;
     display: flex;
     flex-direction: column;
 
     @include mq(desktop) {
-      margin-left: 3rem;
-    }
-
-    @include mq(tablet) {
       margin-left: 0;
     }
   }
@@ -706,8 +702,14 @@
   display: flex;
   width: 100%;
 
-  @include mq(tablet) {
+  @include mq(desktop) {
+    margin-top: 4rem;
+    height: 100vh;
     flex-direction: column;
+  }
+
+  @include mq(tablet) {
+    margin-top: var(--margin);
   }
 }
 
@@ -717,7 +719,7 @@
   flex-direction: column;
   justify-content: center;
 
-  @include mq(tablet) {
+  @include mq(desktop) {
     flex-direction: row;
   }
 
@@ -730,9 +732,8 @@
     border: 2px solid #a6a6a6;
     margin-bottom: var(--margin);
 
-    @include mq(tablet) {
+    @include mq(desktop) {
       width: 80%;
-      height: 150px;
       border-radius: 15px;
     }
   }
@@ -742,7 +743,7 @@
   margin-left: 6rem;
   flex: 1;
 
-  @include mq(tablet) {
+  @include mq(desktop) {
     margin-left: 0;
   }
 }
@@ -787,12 +788,13 @@
     width: 800px;
 
     @include mq(desktop) {
-      width: 700px;
+      width: 600px;
+      margin-right: var(--margin);
       height: auto;
     }
 
     @include mq(tablet) {
-      width: 100%; 
+      width: 100%;
     }
   }
 
@@ -808,7 +810,7 @@
       height: auto;
       width: 100%;
       margin-right: 0;
-      margin-bottom: 1rem; 
+      margin-bottom: 1rem;
     }
   }
 
@@ -842,7 +844,7 @@
     @include mq(tablet) {
       width: 100%;
       height: 2.5rem;
-      transition: width 2s ease; 
+      transition: width 2s ease;
     }
   }
 
@@ -902,16 +904,22 @@
 
   &__title {
     position: absolute;
-    top: 25%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 90%;
     height: 50%;
     text-align: center;
     overflow: hidden;
     color: var(--white);
 
+    @include mq(desktop) {
+      top: 40%;
+      width: 100%;
+    }
+
     @include mq(mobile) {
+      top: 50%;
       width: 90%;
     }
   }
@@ -926,6 +934,14 @@
 
     @include mq(desktop) {
       font-size: 8rem;
+    }
+
+    @include mq(laptop) {
+      font-size: 6rem;
+    }
+
+    @include mq(tablet) {
+      font-size: 5rem;
     }
 
     @include mq(mobile) {
@@ -959,7 +975,7 @@
   align-items: center;
   height: 100vh;
 
-  @include mq(mobile) {
+  @include mq(tablet) {
     flex-direction: column;
   }
 
@@ -968,7 +984,7 @@
     flex-direction: column;
     max-width: 50%;
 
-    @include mq(mobile) {
+    @include mq(tablet) {
       max-width: 90%;
     }
   }
@@ -992,10 +1008,102 @@
     height: 450px;
     max-width: 40%;
 
-    @include mq(mobile) {
+    @include mq(tablet) {
       max-width: 90%;
       height: 300px;
       margin-left: 0;
     }
+  }
+}
+
+.section-uikit {
+  height: 150vh;
+  margin-left: 2rem;
+
+  &__big-title {
+    font-size: 10rem;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-size: 4rem;
+    text-transform: uppercase;
+    color: var(--white);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  }
+
+  &__text {
+    font-family: var(--font-light);
+    color: var(--white);
+    font-weight: 300;
+    max-width: 600px;
+
+    &-glow {
+      font-family: var(--font-light);
+      text-transform: uppercase;
+      font-weight: 300;
+      text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+    }
+  }
+
+  .uikit__container {
+    display: flex;
+    margin-bottom: 2rem;
+
+    &--wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 2rem;
+    }
+
+    &--el {
+      width: 200px;
+      height: 200px;
+      border-radius: 25px;
+      border: 2px solid #a6a6a6;
+    }
+
+    .color {
+
+      &--white {
+        background-color: var(--white);
+      }
+
+      &--bg {
+        background-color: var(--bg-color);
+      }
+
+      &--lightred {
+        background-color: var(--light-red);
+      }
+
+      &--mediumred {
+        background-color: var(--medium-red);
+      }
+    }
+
+    &--wrapper span {
+      margin-top: 1rem;
+      font-size: 2rem;
+      text-align: center;
+    }
+  }
+}
+
+.section-credits__container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .header__list {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .header__item {
+    margin-bottom: 1rem;
+    margin-left: 2rem;
   }
 }
